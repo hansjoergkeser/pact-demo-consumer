@@ -1,10 +1,8 @@
-package org.example.consumer.user.service.model;
+package org.example.consumer.user.service.schema;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
-
-import java.util.List;
 
 /**
  * Note: The consumer is not interested in all data of the provider's tasks. The consumer's tasks only
@@ -14,15 +12,12 @@ import java.util.List;
  */
 @Data
 @NoArgsConstructor
-public class UserDTO {
+public class SkillDTO {
 
     @NonNull
-    private String userId;
+    private String skillId;
 
     @NonNull
-    private String userName;
-
-    @NonNull
-    private List<SkillDTO> skillDtos;
+    private String skillName;
 
 }
