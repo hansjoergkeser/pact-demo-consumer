@@ -1,4 +1,4 @@
-package org.example.model;
+package org.example.user.service.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

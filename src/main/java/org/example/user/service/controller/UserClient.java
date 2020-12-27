@@ -1,13 +1,10 @@
-package org.example.springboot;
+package org.example.user.service.controller;
 
-import org.example.model.UserDTO;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
+import org.example.user.service.model.UserDTO;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
 
-import java.util.Collections;
 import java.util.List;
 
 import static java.util.Arrays.asList;
