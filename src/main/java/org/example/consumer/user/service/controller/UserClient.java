@@ -1,6 +1,6 @@
-package org.example.user.service.controller;
+package org.example.consumer.user.service.controller;
 
-import org.example.user.service.model.UserDTO;
+import org.example.consumer.user.service.model.UserDTO;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
@@ -21,11 +21,10 @@ public class UserClient {
                 retrieve().
                 bodyToMono(UserDTO.class).
                 onErrorMap(WebClientResponseException.BadRequest.class,
-                           e -> new Exception("Insufficient authentication to access task API.", e)).
+                        e -> new Exception("BadRequest on user API.", e)).
                 block();
     }
 
-    @SuppressWarnings("java:S2583") // SonarQube seems to get this wrong, block can return null if the Mono is empty.
     public List<UserDTO> getAllUser() {
         UserDTO[] userArray = webClient.get().retrieve().bodyToMono(UserDTO[].class).block();
         if (userArray != null) {
