@@ -11,7 +11,11 @@ Lombok to create DTOs https://projectlombok.org/
 
 ## Start service
 
-execute in terminal: mvn spring-boot:run
-<br>service runs on localhost:9090 (see/configure port in application.properties)
+after first checkout/cloning the project, execute in terminal:
+
+mvn clean install -U
+<br>mvn spring-boot:run
+
+service runs on localhost:9090 (see/configure port in application.properties)
 
 
