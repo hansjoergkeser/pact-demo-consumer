@@ -27,6 +27,12 @@
             <artifactId>lombok</artifactId>
             <version>1.18.12</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/au.com.dius/pact-jvm-consumer-junit5 -->
+        <dependency>
+            <groupId>au.com.dius</groupId>
+            <artifactId>pact-jvm-consumer-junit5</artifactId>
+            <version>4.0.10</version>
+        </dependency>
 
         <!-- Spring dependencies -->
 
@@ -35,7 +41,6 @@
             <artifactId>springdoc-openapi-ui</artifactId>
             <version>1.5.2</version>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
