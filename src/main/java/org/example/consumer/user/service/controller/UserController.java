@@ -14,13 +14,13 @@ import java.util.List;
 @RequestMapping("/user")
 @Slf4j
 @RequiredArgsConstructor
-class UserController {
+public class UserController {
 
     private final UserClient userClient;
 
     @GetMapping("/getAllUsers")
-    public List<UserDTO> getAllUser() {
-        return userClient.getAllUser();
+    public List<UserDTO> getAllUsers() {
+        return userClient.getAllUsers();
     }
 
     @GetMapping("/{id}")

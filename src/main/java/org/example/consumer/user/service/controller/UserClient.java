@@ -54,7 +54,7 @@ public class UserClient {
                 block();
     }
 
-    public List<UserDTO> getAllUser() {
+    public List<UserDTO> getAllUsers() {
         try {
             UserDTO[] userArray = webClient.get().uri("/getAllUsers").retrieve().bodyToMono(UserDTO[].class).block();
 
