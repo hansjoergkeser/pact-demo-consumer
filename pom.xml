@@ -14,24 +14,28 @@
     <groupId>org.example</groupId>
     <artifactId>pact-demo-consumer</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <description>Pact demo consumer</description>
+    <description>Spring Boot demo project for Pact consumer tests</description>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
+        <lombok.version>1.18.12</lombok.version>
+        <pact-jvm-consumer-junit5.version>4.0.10</pact-jvm-consumer-junit5.version>
+        <springdoc-openapi-ui.version>1.5.2</springdoc-openapi-ui.version>
+        <reactor-spring.version>1.0.1.RELEASE</reactor-spring.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.12</version>
+            <version>${lombok.version}</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/au.com.dius/pact-jvm-consumer-junit5 -->
         <dependency>
             <groupId>au.com.dius</groupId>
             <artifactId>pact-jvm-consumer-junit5</artifactId>
-            <version>4.0.10</version>
+            <version>${pact-jvm-consumer-junit5.version}</version>
         </dependency>
 
         <!-- Spring dependencies -->
@@ -39,7 +43,7 @@
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-ui</artifactId>
-            <version>1.5.2</version>
+            <version>${springdoc-openapi-ui.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -52,7 +56,7 @@
         <dependency>
             <groupId>org.projectreactor</groupId>
             <artifactId>reactor-spring</artifactId>
-            <version>1.0.1.RELEASE</version>
+            <version>${reactor-spring.version}</version>
         </dependency>
 
         <!-- tag::actuator[] -->

@@ -58,14 +58,16 @@ public class UserControllerConsumerPactTest {
                 .method("GET")
                 .willRespondWith()
                 .status(200)
-                .body(PactDslJsonArray.arrayEachLike()
-                        .stringType("userId", "123")
-                        .stringType("userName", "Pactman")
-                        .eachLike("skillDtos")
-                        .stringType("skillId", "9")
-                        .stringType("skillName", "Creating Pact Consumer Tests")
-                        .closeArray()
-                        .closeObject()
+                .body(
+                        // https://docs.pact.io/implementation_guides/jvm/consumer
+                        PactDslJsonArray.arrayEachLike()
+                                .stringType("userId", "123")
+                                .stringType("userName", "Pactman")
+                                .eachLike("skillDtos")
+                                .stringType("skillId", "9")
+                                .stringType("skillName", "Creating Pact Consumer Tests")
+                                .closeArray()
+                                .closeObject()
                 )
                 .toPact();
     }
