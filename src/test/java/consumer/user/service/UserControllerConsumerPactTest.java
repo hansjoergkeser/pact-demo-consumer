@@ -15,6 +15,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.client.AutoConfigureWebClient;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.TestPropertySource;
 
 import java.util.Collections;
 import java.util.List;
@@ -24,10 +25,12 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest(classes = {UserController.class, UserClient.class})
 @AutoConfigureWebClient
 @PactTestFor(port = "8083")
-//@TestPropertySource(properties = {
-// enable if test fails to get more details in log
-//        "logging.level.au.com.dius.pact=DEBUG"
-//})
+@TestPropertySource(properties = {
+        // overrides default spring property in application.properties
+        "user.service.url=http://localhost:8083/user",
+        // enable if test fails to get more details in log
+        // "logging.level.au.com.dius.pact=DEBUG"
+})
 @ExtendWith(PactConsumerTestExt.class)
 public class UserControllerConsumerPactTest {
 
