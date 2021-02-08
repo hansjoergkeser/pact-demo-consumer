@@ -22,6 +22,6 @@ mvn clean install -U
 mvn spring-boot:run
 ```
 
-> Note: Service runs on localhost:9090 (see/configure port in application.properties)
+> Note: Service runs on localhost:9090 (see or configure `server.port` in application.properties)
 
 
