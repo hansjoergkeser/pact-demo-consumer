@@ -24,4 +24,8 @@ mvn spring-boot:run
 
 > Note: Service runs on localhost:9090 (see or configure `server.port` in application.properties)
 
+### pact-demo-provider
+
+Find the according provider service here: <br>
+https://github.com/hansjoergkeser/pact-demo-provider
 
