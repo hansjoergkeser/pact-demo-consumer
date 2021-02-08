@@ -1,9 +1,13 @@
-# pact-demo-consumer
+# Pact Demo Consumer
 
 <a href="https://github.com/hansjoergkeser/pact-demo-consumer/actions?query=workflow%3A%22Java+CI+with+Maven">
 <img alt="GitHub Actions status" 
 src="https://github.com/actions/cache/workflows/Tests/badge.svg?branch=main&event=push">
 </a>
+
+This contains the Spring Boot `Greeting` [sample project](https://github.com/spring-guides/gs-serving-web-content),
+added by some tests to demonstrate <br>
+Consumer Driven Contract Testing `CDCT` with [Pact](https://pact.io/)
 
 ## Used frameworks & plugins
 
