@@ -6,6 +6,8 @@ import au.com.dius.pact.consumer.junit5.PactConsumerTestExt;
 import au.com.dius.pact.consumer.junit5.PactTestFor;
 import au.com.dius.pact.core.model.RequestResponsePact;
 import au.com.dius.pact.core.model.annotations.Pact;
+import java.util.Collections;
+import java.util.List;
 import org.example.consumer.user.service.controller.UserClient;
 import org.example.consumer.user.service.controller.UserController;
 import org.example.consumer.user.service.schema.SkillDTO;
@@ -17,10 +19,9 @@ import org.springframework.boot.test.autoconfigure.web.client.AutoConfigureWebCl
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 
-import java.util.Collections;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 @SpringBootTest(classes = {UserController.class, UserClient.class})
 @AutoConfigureWebClient
@@ -117,5 +118,7 @@ public class UserControllerConsumerPactTest {
         assertFalse(responseOfMockServer.isEmpty(), "Response must not be empty, because we defined the body, having an array with one example dto.");
         assertEquals(String.valueOf(USER_ID_EXAMPLE_VALUE), responseOfMockServer.get(0).getUserId());
     }
+
+    // TODO createPact_GetUserById
 
 }

@@ -30,6 +30,21 @@ mvn spring-boot:run
 
 ### pact-demo-provider
 
-Find the according provider service here: <br>
+Find the according provider service here:
+<br>
 https://github.com/hansjoergkeser/pact-demo-provider
+
+### interactive documentation
+
+use swagger ui to test and investigate
+<br>
+http://localhost:9090/swagger-ui/index.html
+
+Example requests:
+<br>
+http://localhost:9090/user/getAllUsers
+<br>
+http://localhost:9090/user/1
+
+
 
