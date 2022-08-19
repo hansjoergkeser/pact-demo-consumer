@@ -41,7 +41,8 @@ public class UserControllerConsumerPactTest {
 	private static final String USER_ID_PARAM = "userId";
 	public static final String USER_NAME_PARAM = "userName";
 
-	public static final int USER_ID = 101;
+	public static final int USER_ID_1 = 1;
+	public static final int USER_ID_101 = 101;
 	public static final String USER_NAME = "PactCat";
 	public static final int SKILL_ID = 456;
 	public static final String SKILL_NAME = "Creating Pact Consumer Tests";
@@ -55,9 +56,9 @@ public class UserControllerConsumerPactTest {
 	@Autowired
 	private UserClient userClient;
 
-	private UserDTO createUserDTO() {
+	private UserDTO createUserDTO(int userId) {
 		UserDTO exampleUserDTO = new UserDTO();
-		exampleUserDTO.setUserId(String.valueOf(USER_ID));
+		exampleUserDTO.setUserId(String.valueOf(userId));
 		exampleUserDTO.setUserName(USER_NAME);
 
 		SkillDTO skillDTO = new SkillDTO();
@@ -79,7 +80,7 @@ public class UserControllerConsumerPactTest {
 				.body(
 						// https://docs.pact.io/implementation_guides/jvm/consumer
 						PactDslJsonArray.arrayEachLike()
-								.integerType(USER_ID_PARAM, USER_ID)
+								.integerType(USER_ID_PARAM, USER_ID_101)
 								.stringType(USER_NAME_PARAM, USER_NAME)
 								.eachLike(SKILL_DTOS_PARAM)
 								.integerType(SKILL_ID_PARAM, SKILL_ID)
@@ -95,15 +96,15 @@ public class UserControllerConsumerPactTest {
 	public void testCreatePact_GetAllUsers() {
 		List<UserDTO> responseOfMockServer = assertDoesNotThrow(() -> userController.getAllUsers());
 		assertFalse(responseOfMockServer.isEmpty(), "Response must not be empty, because we defined the body, having an array with one example dto.");
-		assertEquals(Collections.singletonList(createUserDTO()), responseOfMockServer, "Response body contained a different user dto as expected.");
+		assertEquals(Collections.singletonList(createUserDTO(USER_ID_101)), responseOfMockServer, "Response body contained a different user dto as expected.");
 	}
 
 	@Pact(provider = "PactDemoProvider", consumer = "PactDemoConsumer")
 	public RequestResponsePact createPact_GetAllUsersWithProviderState(PactDslWithProvider builder) {
 
 		return builder
-				.given("User with user id ${" + USER_ID_PARAM + "} exists", USER_ID_PARAM, USER_ID)
-				.uponReceiving("getAllUsers test interaction response for user with " + USER_ID_PARAM + " = " + USER_ID)
+				.given("User with ${" + USER_ID_PARAM + "} exists", USER_ID_PARAM, USER_ID_101)
+				.uponReceiving("getAllUsers test interaction response for user with " + USER_ID_PARAM + " = " + USER_ID_101)
 				.path("/user/getAllUsers")
 				.method("GET")
 				.willRespondWith()
@@ -111,7 +112,7 @@ public class UserControllerConsumerPactTest {
 				.body(
 						// https://docs.pact.io/implementation_guides/jvm/consumer
 						PactDslJsonArray.arrayEachLike()
-								.integerType(USER_ID_PARAM, USER_ID)
+								.integerType(USER_ID_PARAM, USER_ID_101)
 								.stringType(USER_NAME_PARAM, USER_NAME)
 								.eachLike(SKILL_DTOS_PARAM)
 								.integerType(SKILL_ID_PARAM, SKILL_ID)
@@ -127,21 +128,22 @@ public class UserControllerConsumerPactTest {
 	public void testCreatePact_GetAllUsersWithProviderState() {
 		List<UserDTO> responseOfMockServer = assertDoesNotThrow(() -> userController.getAllUsers());
 		assertFalse(responseOfMockServer.isEmpty(), "Response must not be empty, because we defined the body, having an array with one example dto.");
-		assertEquals(String.valueOf(USER_ID), responseOfMockServer.get(0).getUserId());
+		assertEquals(String.valueOf(USER_ID_101), responseOfMockServer.get(0).getUserId());
 	}
 
 	@Pact(provider = "PactDemoProvider", consumer = "PactDemoConsumer")
 	public RequestResponsePact createPact_GetUserById(PactDslWithProvider builder) {
 		return builder
-				.uponReceiving("get user by id test interaction response")
-				.path("/user/getUser/" + USER_ID)
+				.given("User with ${" + USER_ID_PARAM + "} exists", USER_ID_PARAM, USER_ID_1)
+				.uponReceiving("get user by " + USER_ID_PARAM + " = " + USER_ID_1)
+				.path("/user/getUser/" + USER_ID_1)
 				.method("GET")
 				.willRespondWith()
 				.status(HttpStatus.OK.value())
 				.body(
 						// https://docs.pact.io/implementation_guides/jvm/consumer
 						new PactDslJsonBody()
-								.integerType(USER_ID_PARAM, USER_ID)
+								.integerType(USER_ID_PARAM, USER_ID_1)
 								.stringType(USER_NAME_PARAM, USER_NAME)
 								.eachLike(SKILL_DTOS_PARAM)
 								.integerType(SKILL_ID_PARAM, SKILL_ID)
@@ -154,12 +156,10 @@ public class UserControllerConsumerPactTest {
 	@Test
 	@PactTestFor(pactMethod = "createPact_GetUserById")
 	public void testCreatePact_GetUserById() {
-		UserDTO responseOfMockServer = assertDoesNotThrow(() -> userController.getUser(String.valueOf(USER_ID)));
+		UserDTO responseOfMockServer = assertDoesNotThrow(() -> userController.getUser(String.valueOf(USER_ID_1)));
 		assertNotNull(responseOfMockServer, "Response must not be empty, " +
 				"because we defined the body in the method createPact_GetUserById(), containing one example dto.");
-		assertEquals(createUserDTO(), responseOfMockServer, "Response body contained a different user dto as expected.");
+		assertEquals(createUserDTO(USER_ID_1), responseOfMockServer, "Response body contained a different user dto as expected.");
 	}
-
-	// TODO createPact_GetUserById provider state
 
 }
