@@ -10,7 +10,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest(classes = {UserController.class})
-public class UserControllerTest {
+public class UserControllerITTest {
 
     @Autowired
     private UserController userController;
